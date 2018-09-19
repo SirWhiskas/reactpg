@@ -3,6 +3,28 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 Below you will find some information on how to perform common tasks.<br>
 You can find the most recent version of this guide [here](https://github.com/facebookincubator/create-react-app/blob/master/packages/react-scripts/template/README.md).
 
+## About ##
+This is a small text-based RPG game using ReactJS and Electron. I use React to create the various front-end components, such as the character creation form, and for routing to different pages using the react-router-dom package. I'm also using Electron to have a desktop-app feel.
+
+## Running The Application
+After cloning this project, run:
+```
+npm install
+```
+
+Then run the following commands:
+```
+npm start
+```
+
+```
+npm run electron
+```
+
+The first command will start the React app and the second command will create the electron window
+
+
+
 ## Table of Contents
 
 - [Updating to New Releases](#updating-to-new-releases)
