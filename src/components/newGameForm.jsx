@@ -6,24 +6,25 @@ import { getRaces, getRace } from './services/characterRaceService';
 class NewGameForm extends Form {
     state = {
         data: { characterName: '', race: '' },
-        characterDescription: getRace(getRaces()[0]._id).description,
+        characterDescription: '',
         errors: {}
     };
 
     schema = {
         characterName: Joi.string().required().label('Character Name'),
-        race: Joi.required()
+        race: Joi.string().invalid('').required()
     }
 
-    doSumbit = () => {
-        console.log('Character created');
+    doSubmit = () => {
+        console.log(this.state.data);
+
     };
 
     doChange = data => {
         if (data.name === 'race') {
             let index = data.options.selectedIndex;
             let id = data.options[index].id;
-            let description = getRace(id).description;
+            let description = (getRace(id) !== undefined ? getRace(id).description : "");
 
             this.setState({ characterDescription: description });
         }
@@ -39,7 +40,8 @@ class NewGameForm extends Form {
                             <form onSubmit={this.handleSubmit}>
                                 {this.renderInput('characterName', 'Character Name')}
                                 {this.renderSelect('race', 'Race', getRaces())}
-                                {this.renderButton('Create', 'hvr-shutter-in-horizontal')}
+                                {this.renderNavButton('Create', 'hvr-shutter-in-horizontal', '/game/' + JSON.stringify(this.state.data))}
+                                {this.renderNavButton('Cancel', 'hvr-shutter-in-horizontal', '/')}
                             </form>
                         </div>
                         <div className="col-2 character-panel">

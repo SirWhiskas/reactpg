@@ -2,7 +2,7 @@ export const races = [
     {
         _id: "1",
         name: "Human",
-        description: "Humans are relatively new race. Despite their short life-spans, lack of history, and weak nature, They are quite clever and resourceful. Given enough time, they may indeed bring the world to a new age."
+        description: "Humans are a relatively new race. Despite their short life-spans, lack of history, and weak nature, They are quite clever and resourceful. Given enough time, they may indeed bring the world to a new age."
     },
     {
         _id: "2",

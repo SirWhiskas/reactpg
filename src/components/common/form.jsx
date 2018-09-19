@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Joi from 'joi-browser';
+import { Link } from 'react-router-dom';
 import Input from './input';
 import Select from './select';
 
@@ -30,7 +31,7 @@ class Form extends Component {
 
     handleSubmit = e => {
         e.preventDefault();
-
+        console.log(e);
         const errors = this.validate();
         this.setState({ errors: errors || {} });
         if (errors) return;
@@ -47,7 +48,6 @@ class Form extends Component {
         const data = { ...this.state.data } // Cloning
         data[input.name] = input.value;
         this.setState({ data, errors });
-        console.log(data[input.name]);
         this.doChange(input);
     };
 
@@ -55,8 +55,22 @@ class Form extends Component {
         return (
             <button
                 className={nameOfClass}
-                disabled={this.validate()}>{label}
+                disabled={this.validate()}
+            >
+                {label}
             </button>
+        );
+    }
+
+    renderNavButton(label, nameOfClass, linkTo) {
+        return (
+            <Link to={linkTo}>
+                <button
+                    className={nameOfClass}
+                >
+                    {label}
+                </button>
+            </Link>
         );
     }
 
