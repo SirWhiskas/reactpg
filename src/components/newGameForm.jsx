@@ -17,7 +17,6 @@ class NewGameForm extends Form {
 
     doSubmit = () => {
         console.log(this.state.data);
-
     };
 
     doChange = data => {

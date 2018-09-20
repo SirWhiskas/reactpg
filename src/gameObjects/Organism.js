@@ -20,10 +20,36 @@ class Organism {
         return this._maximumHitPoints;
     }
 
+    setName(name) {
+        this.name = name;
+    }
+
+    getName() {
+        return this.name
+    }
+
+    setRace(race) {
+        this.race = race;
+    }
+
+    getRace() {
+        return this.race
+    }
+
+    getProfile() {
+        return { "Name": this.getName(), "Race": this.getRace, "Health": this.getCurrentHitPoints() };
+    }
+
     renderProfile() {
-        console.log("Profile =============================>");
-        console.log(`Current Hit Points: ${this.getCurrentHitPoints()}`);
-        console.log("=====================================>");
+        let profile = `
+            Profile ======================================>
+            - Name: ${this.getName()}
+            - Race: ${this.getRace()}
+            - Current Hit Points: ${this.getCurrentHitPoints()}
+            ===============================================>
+        `;
+        console.log(profile);
+        return profile;
     }
 }
 

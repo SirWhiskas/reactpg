@@ -125,6 +125,16 @@
   margin-top: 5%;
 }
 
+.gameWindow {
+  line-height: 1.6;
+  width: 90%;
+  /* height: 500px; */
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 10%;
+  background-color: lightslategray;
+}
+
 /* SIMPLE GRID */
 
 .grid-container{
