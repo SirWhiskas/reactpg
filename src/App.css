@@ -126,7 +126,7 @@
 }
 
 .gameWindow {
-  line-height: 1.6;
+  /* line-height: 1.6; */
   width: 90%;
   /* height: 500px; */
   margin-right: auto;

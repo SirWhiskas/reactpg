@@ -1,7 +1,9 @@
 class Organism {
-    constructor(currentHitPoints, maximumHitPoints) {
+    constructor(currentHitPoints, maximumHitPoints, name, race) {
         this._currentHitPoints = currentHitPoints;
         this._maximumHitPoints = maximumHitPoints;
+        this._name = name;
+        this._race = race;
     }
 
     setCurrentHitPoints(value) {
@@ -21,19 +23,19 @@ class Organism {
     }
 
     setName(name) {
-        this.name = name;
+        this._name = name;
     }
 
     getName() {
-        return this.name
+        return this._name
     }
 
     setRace(race) {
-        this.race = race;
+        this._race = race;
     }
 
     getRace() {
-        return this.race
+        return this._race
     }
 
     getProfile() {

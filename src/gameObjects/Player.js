@@ -1,8 +1,8 @@
 import Organism from './Organism.js';
 
 class Player extends Organism {
-    constructor(currentHitPoints, maximumHitPoints, gold, xp, level) {
-        super(currentHitPoints, maximumHitPoints);
+    constructor(currentHitPoints, maximumHitPoints, gold, xp, level, name, race) {
+        super(currentHitPoints, maximumHitPoints, name, race);
 
         this.gold = gold;
         this.xp = xp;

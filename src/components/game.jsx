@@ -4,23 +4,27 @@ import CharacterProfile from './common/characterProfile';
 
 class Game extends Component {
     state = {
-        player: ''
+        player: '',
+        locations: []
     };
 
-    p1 = new Player(10, 10, 0, 0, 1);
+    componentWillMount() {
+        const playerData = JSON.parse(this.props.match.params.characterData);
+        const player = new Player(10, 10, 0, 0, 1, playerData.characterName, playerData.race);
+
+        this.setState({ player });
+    }
 
     render() {
-        let playerData = JSON.parse(this.props.match.params.characterData);
-        this.p1.setName(playerData.characterName);
-        this.p1.setRace(playerData.race);
-
-
         return (
             <div className="gameWindow">
                 <div className="grid-container">
                     <div className="row">
+                        <div className="col-2">
+                            {<CharacterProfile character={this.state.player} />}
+                        </div>
                         <div className="col-3">
-                            <CharacterProfile character={this.p1} />
+                            <h1>Game Window</h1>
                         </div>
                     </div>
                 </div>

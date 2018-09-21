@@ -22,7 +22,7 @@ class NewGameForm extends Form {
     doChange = data => {
         if (data.name === 'race') {
             let index = data.options.selectedIndex;
-            let id = data.options[index].id;
+            let id = data.options[index].value;
             let description = (getRace(id) !== undefined ? getRace(id).description : "");
 
             this.setState({ characterDescription: description });
