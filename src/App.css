@@ -135,6 +135,10 @@
   background-color: lightslategray;
 }
 
+.unStyled {
+  list-style-type: none;
+}
+
 /* SIMPLE GRID */
 
 .grid-container{

@@ -1,3 +1,6 @@
+import * as questsAPI from "./questService.js";
+import * as itemsAPI from "./itemService.js";
+
 const locations = [
     {
         _id: "1",
@@ -27,7 +30,7 @@ const locations = [
         _id: "3",
         name: "Alchemist's hut",
         description: "There are many strange plants on the shelves.",
-        availableQuest: { _id: "1" },
+        availableQuest: { _id: "1", name: "Clear the alchemist's garden" },
         residingMonster: null,
         requiredItem: null,
         locationToNorth: null,
@@ -35,4 +38,13 @@ const locations = [
         locationiToSouth: "1",
         locationiToWest: null
     }
-]
+];
+
+export function getLocations() {
+    return locations;
+}
+
+export function getLocation(id) {
+    return locations.find(l => l._id === id);
+}
+
