@@ -11,8 +11,8 @@ const locations = [
         requiredItem: null,
         locationToNorth: "2",
         locationToEast: null,
-        locationiToSouth: null,
-        locationiToWest: null
+        locationToSouth: null,
+        locationToWest: null
     },
     {
         _id: "2",
@@ -23,8 +23,8 @@ const locations = [
         requiredItem: null,
         locationToNorth: null,
         locationToEast: "3",
-        locationiToSouth: "1",
-        locationiToWest: null
+        locationToSouth: "1",
+        locationToWest: null
     },
     {
         _id: "3",
@@ -34,9 +34,9 @@ const locations = [
         residingMonster: null,
         requiredItem: null,
         locationToNorth: null,
-        locationToEast: "3",
-        locationiToSouth: "1",
-        locationiToWest: null
+        locationToEast: null,
+        locationToSouth: null,
+        locationToWest: "2"
     }
 ];
 

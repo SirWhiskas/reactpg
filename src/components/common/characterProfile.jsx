@@ -2,7 +2,7 @@ import React from 'react';
 
 const CharacterProfile = ({ character }) => {
     const profileData = character.getProfile();
-    console.log(profileData);
+    // console.log(profileData);
     const profilePage = Object.keys(profileData).map((keyname, keyindex) => {
         return (
             <div key={keyindex}>
