@@ -31,7 +31,7 @@ const locations = [
         name: "Alchemist's hut",
         description: "There are many strange plants on the shelves.",
         availableQuest: { _id: "1", name: "Clear the alchemist's garden" },
-        residingMonster: null,
+        residingMonster: { _id: "1", name: "Rat" },
         requiredItem: null,
         locationToNorth: null,
         locationToEast: null,
