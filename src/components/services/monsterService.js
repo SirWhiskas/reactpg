@@ -2,6 +2,7 @@ const monsters = [
     {
         _id: "1",
         name: "Rat",
+        health: 5,
         maxDamage: 5,
         rewardXP: 3,
         rewardGold: 1,
