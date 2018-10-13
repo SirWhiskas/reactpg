@@ -19,8 +19,8 @@ class CharacterLocation extends Component {
         let monster = this.props.monster;
 
         if (monster !== null) {
-            monsterName = <b>{monster.name}</b>
-            monsterHP = <b>{monster.health}</b>
+            monsterName = <b>{monster.getName()}</b>
+            monsterHP = <b>{monster.getCurrentHitPoints()}</b>
         }
 
         return (

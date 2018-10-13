@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import Joi from 'joi-browser';
 import Form from './common/form';
-import { getRaces, getRace } from './services/characterRaceService';
+import { getRaces, getRace } from './services/characterRaceService.js';
 
 class NewGameForm extends Form {
     state = {

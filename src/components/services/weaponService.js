@@ -15,3 +15,7 @@ export function getWeapons() {
 export function getWeapon(id) {
     return weapons.find(w => w._id === id);
 }
+
+export function getWeaponByItemId(itemId) {
+    return weapons.find(w => w.itemId === itemId);
+}

@@ -1,6 +1,9 @@
 import React, { Component } from 'react';
 import Player from '../gameObjects/Player.js';
+import Monster from '../gameObjects/Monster.js';
+
 import CharacterProfile from './common/characterProfile';
+import CharacterInventory from './common/characterInventory';
 import CharacterLocation from './common/characterLocation';
 import DirectionalPad from './directionalPad';
 import BattlePad from './battlePad';
@@ -31,7 +34,7 @@ class Game extends Component {
         // Initial current location to first in list
         const currentLocationId = locations[0]._id;
 
-        const currentMonster = locations[0].residingMonster ? getMonster(locations[0].residingMonster._id) : null;
+        const currentMonster = this.setMonster(locations[0].residingMonster);
 
         this.setState({ player, locations, currentLocationId, currentMonster });
     }
@@ -41,14 +44,38 @@ class Game extends Component {
         const newLocationId = currentLocation["locationTo" + direction];
 
         const newLocation = getLocation(newLocationId);
-        console.log(newLocation.residingMonster);
-        const newMonster = newLocation.residingMonster ? getMonster(newLocation.residingMonster._id) : null;
+        
 
-        if (newLocationId !== null) {
+        if (newLocationId !== null && newLocation !== undefined) {
+            const newMonster = this.setMonster(newLocation.residingMonster);
             this.setState({ currentLocationId: newLocationId, currentMonster: newMonster });
         } else {
             // Tell user they cannot go that way
         }
+    };
+
+    handleItemClick = (item, type) => {
+        const player = this.state.player;
+
+        switch (type) {
+            case 'weapon':
+                player.setMainHandWeapon(item);
+                break;
+
+            default:
+                break;
+        }
+
+        this.setState({ player });
+    };
+
+    setMonster = monster => {
+        console.log(monster);
+        if (monster) {
+            return new Monster(getMonster(monster._id));
+        }
+
+        return null;
     };
 
     handleBattleStrategy = strategy => {
@@ -72,17 +99,19 @@ class Game extends Component {
 
     playerAttack = () => {
         console.log("Attack monster");
-        let playerAttack = 1; // Testing
         let playerState = this.state.player;
 
+        let playerAttack = playerState.calculateWeaponDamage(); // Testing
+
         let monster = this.state.currentMonster;
-        monster.health = monster.health - playerAttack;
+        monster.setCurrentHitPoints(monster.getCurrentHitPoints() - playerAttack);
 
         // Check if monster is dead
-        if (monster.health <= 0) {
+        if (monster.getCurrentHitPoints() <= 0) {
             console.log("You defeated the monster!");
+            monster = null;
         } else {
-            let monsterAttack = monster.maxDamage;
+            let monsterAttack = monster.getMaxDamage();
             let playerHealth = playerState.getCurrentHitPoints() - monsterAttack;
             playerState.setCurrentHitPoints(playerHealth);
 
@@ -113,7 +142,10 @@ class Game extends Component {
                     </div>
                     <div className="row">
                         <div className="col-2">
-                            <QuestLog />
+                            <CharacterInventory 
+                                character={player} 
+                                onClick={this.handleItemClick}
+                            />
                         </div>
                         <div className="col-2">
                             {
