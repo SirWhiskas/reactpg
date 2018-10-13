@@ -4,6 +4,8 @@ class Organism {
         this._maximumHitPoints = maximumHitPoints;
         this._name = name;
         this._race = race;
+
+        this.inventory = [];
     }
 
     setCurrentHitPoints(value) {
@@ -52,6 +54,19 @@ class Organism {
         `;
         console.log(profile);
         return profile;
+    }
+
+    getInventory() {
+        return this.inventory;
+    }
+
+    addToInventory(itemId) {
+        this.inventory.push(itemId);
+    }
+
+    removeFromInventory(itemId) {
+        let index = this.inventory.indexOf(itemId);
+        this.inventory.splice(index, 1);
     }
 }
 

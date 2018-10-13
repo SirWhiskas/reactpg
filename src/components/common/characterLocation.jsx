@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { getLocation } from '../services/locationService.js';
-import { getMonster } from '../services/monsterService.js';
 
 class CharacterLocation extends Component {
     state = {}
@@ -17,9 +16,9 @@ class CharacterLocation extends Component {
         const currentLocation = getLocation(this.props.locationId);
         let monsterName = "None";
         let monsterHP = "";
-        if (currentLocation.residingMonster !== null) {
-            let monster = getMonster(currentLocation.residingMonster._id);
-            console.log(monster);
+        let monster = this.props.monster;
+
+        if (monster !== null) {
             monsterName = <b>{monster.name}</b>
             monsterHP = <b>{monster.health}</b>
         }
