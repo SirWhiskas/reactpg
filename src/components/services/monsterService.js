@@ -7,7 +7,7 @@ const monsters = [
         rewardXP: 3,
         rewardGold: 1,
         rewardItems: {
-            item: { _id: "1" },
+            item: { _id: "1", itemId: "1", type: "crafting" },
             dropPercentage: 75,
             isDefaultDrop: true
         }

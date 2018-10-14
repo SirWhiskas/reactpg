@@ -12,7 +12,7 @@ import QuestLog from './questLog';
 import { getLocations, getLocation } from './services/locationService.js';
 import { getMonster } from './services/monsterService.js';
 import { getItems, getItem } from './services/itemService.js';
-import { getWeapons, getWeapon } from './services/weaponService.js';
+import { getWeapons, getWeapon, getWeaponByItemId } from './services/weaponService.js';
 
 class Game extends Component {
     state = {
@@ -54,23 +54,26 @@ class Game extends Component {
         }
     };
 
-    handleItemClick = (item, type) => {
+    handleItemClick = (item, type, equipStatus) => {
         const player = this.state.player;
 
-        switch (type) {
-            case 'weapon':
-                player.setMainHandWeapon(item);
-                break;
-
-            default:
-                break;
+        if (equipStatus === "unequip"){
+            player.setMainHandWeapon(null);
+        } else {
+            switch (type) {
+                case 'weapon':
+                    player.setMainHandWeapon(item);
+                    break;
+    
+                default:
+                    break;
+            }
         }
 
         this.setState({ player });
     };
 
     setMonster = monster => {
-        console.log(monster);
         if (monster) {
             return new Monster(getMonster(monster._id));
         }
@@ -109,6 +112,35 @@ class Game extends Component {
         // Check if monster is dead
         if (monster.getCurrentHitPoints() <= 0) {
             console.log("You defeated the monster!");
+
+            playerState.addXP(monster.getRewardXP());
+            playerState.addGold(monster.getRewardGold());
+
+            let looItems = monster.getRewardItems();
+            looItems.forEach(obj => {
+                let drop = Math.floor(Math.random() * (100 - 1) ) + 1;
+                if (drop <= obj.dropPercentage) {
+                    let id = "";
+                    let type = obj.item.type;
+                    switch(obj.item.type) {
+                        case "weapon":
+                            let weapon = getWeaponByItemId(obj.item._itemId);
+                            id = weapon._id;
+                            break;
+                        
+                        case "crafting":
+                            id = obj.item.itemId;
+                            break;
+
+                        default:
+                            id = obj.item.itemId;
+                            break;
+                    }
+                    playerState.addToInventory({ "_id": id, "itemId": obj.item.itemId, "type": type });
+                }
+            });
+            //playerState.addToInventory(monster.getRewardItems());
+
             monster = null;
         } else {
             let monsterAttack = monster.getMaxDamage();

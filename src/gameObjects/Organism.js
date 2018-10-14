@@ -61,7 +61,9 @@ class Organism {
     }
 
     addToInventory(itemId) {
+        console.log(itemId);
         this.inventory.push(itemId);
+        console.log(this.inventory);
     }
 
     removeFromInventory(itemId) {

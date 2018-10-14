@@ -8,8 +8,15 @@ const CharacterInventory = ({ character, onClick }) => {
     const inventoryPage = inventoryData.map((value, index) => {
         console.log(value);
         let listItem = <p><b>-{value.type}:</b><span>{getItem(value.itemId).nameSingular}</span></p>;
-        if (value.type === "weapon") 
-            listItem = <div><b>-{value.type}:</b><span>{getItem(value.itemId).nameSingular}</span><button onClick={() => onClick(value.itemId, value.type)}>Equip</button></div>;
+        if (value.type === "weapon"){
+            if (character.getMainHandWeapon() !== value.itemId) {
+                listItem = <div><b>-{value.type}:</b><span>{getItem(value.itemId).nameSingular}</span><button onClick={() => onClick(value.itemId, value.type, "equip")}>Equip</button></div>;
+            }else{
+                listItem = <div><b>-{value.type}:</b><span>{getItem(value.itemId).nameSingular}</span><button onClick={() => onClick(value.itemId, value.type, "unequip")}>Unequip</button></div>;
+            }
+            
+        } 
+            
         return (
             <div key={index}>
                 {listItem}
